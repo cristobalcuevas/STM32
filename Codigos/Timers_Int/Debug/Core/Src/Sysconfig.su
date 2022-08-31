@@ -1,0 +1,8 @@
+C:/Users/Cristobal/Desktop/STM32/Codigos/Timers_Int/CMSIS/Include/core_cm4.h:1777:22:__NVIC_ClearPendingIRQ	16	static
+C:/Users/Cristobal/Desktop/STM32/Codigos/Timers_Int/CMSIS/Include/core_cm4.h:1816:22:__NVIC_SetPriority	16	static
+../Core/Src/Sysconfig.c:12:6:Sysconfig	4	static
+../Core/Src/Sysconfig.c:47:6:SysTick_config	16	static
+../Core/Src/Sysconfig.c:62:6:msIncTick	4	static
+../Core/Src/Sysconfig.c:66:10:msGetTick	4	static
+../Core/Src/Sysconfig.c:70:6:delay_ms	24	static
+../Core/Src/Sysconfig.c:75:6:SysTick_Handler	8	static

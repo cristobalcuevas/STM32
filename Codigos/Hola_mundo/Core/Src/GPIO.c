@@ -1,0 +1,30 @@
+/*
+ * GPIO.c
+ *
+ *  Created on: 14-04-2022
+ *      Author: Cristobal
+ */
+
+#include "GPIO.h"
+
+void GPIO_Init(void){
+	RCC->AHB1ENR |= RCC_AHB1ENR_GPIOAEN; // HABILITA CLOCK PUERTO A
+	GPIOA->MODER &= ~(GPIO_MODER_MODE5); // CLEAR
+	GPIOA->MODER |= GPIO_MODER_MODE5_0; // CONFIGURADO COMO SALIDA
+	GPIOA->OTYPER &= ~(GPIO_OTYPER_OT5); // SALIDA PUSH PULL
+	GPIOA->OSPEEDR &= ~(GPIO_OSPEEDR_OSPEED5); // VELOCIDAD DE CONMUTACION BAJA
+	GPIOA->PUPDR &= ~(GPIO_PUPDR_PUPD5); // NO PULL UP NI PULL DOWN
+}
+void GPIO_Write(GPIO_State state){
+	if(state == HIGH){
+		GPIOA->ODR |= GPIO_ODR_OD5;
+	}
+	else{
+		GPIOA->ODR &= ~(GPIO_ODR_OD5);
+	}
+}
+
+void GPIO_Toogle(void){
+	GPIOA->ODR ^= GPIO_ODR_OD5;
+
+}

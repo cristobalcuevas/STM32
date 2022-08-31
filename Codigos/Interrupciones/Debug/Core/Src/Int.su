@@ -1,0 +1,3 @@
+C:/Users/Cristobal/Desktop/STM32/Codigos/Interrupciones/CMSIS/Include/core_cm4.h:1688:22:__NVIC_EnableIRQ	16	static
+C:/Users/Cristobal/Desktop/STM32/Codigos/Interrupciones/CMSIS/Include/core_cm4.h:1816:22:__NVIC_SetPriority	16	static
+../Core/Src/Int.c:10:6:Int_Init	8	static

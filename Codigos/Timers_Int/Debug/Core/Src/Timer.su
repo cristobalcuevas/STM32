@@ -1,0 +1,4 @@
+C:/Users/Cristobal/Desktop/STM32/Codigos/Timers_Int/CMSIS/Include/core_cm4.h:1688:22:__NVIC_EnableIRQ	16	static
+C:/Users/Cristobal/Desktop/STM32/Codigos/Timers_Int/CMSIS/Include/core_cm4.h:1816:22:__NVIC_SetPriority	16	static
+../Core/Src/Timer.c:10:6:Timer_delay	16	static
+../Core/Src/Timer.c:21:6:Timer_Periodo_Init	16	static

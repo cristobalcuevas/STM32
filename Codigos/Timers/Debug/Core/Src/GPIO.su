@@ -1,0 +1,4 @@
+../Core/Src/GPIO.c:10:6:GPIO_Init_Read	4	static
+../Core/Src/GPIO.c:20:12:GPIO_Read	4	static
+../Core/Src/GPIO.c:29:6:GPIO_Write	16	static
+../Core/Src/GPIO.c:38:6:GPIO_Toggle	4	static
