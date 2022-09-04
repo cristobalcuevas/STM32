@@ -1,5 +1,5 @@
-#ifndef _MAIN_H_
-#define _MAIN_H_
+#ifndef __MAIN_H_
+#define __MAIN_H_
 
 #include <stdbool.h> // true or false
 #include <string.h>  // strlen

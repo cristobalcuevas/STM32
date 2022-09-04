@@ -12,7 +12,6 @@
 bool SystemClock_Config(void);
 void GPIO_Init(void);
 bool USART1_UART_Init(void);
-
-// void myprintf(const char *fmt, ...);
+void myprintf(const char *format, ...);
 
 #endif /* __MAIN_H */

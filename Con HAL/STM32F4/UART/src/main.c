@@ -1,3 +1,4 @@
+/* Includes ------------------------------------------------------------------*/
 #include "main.h"
 /* Private variables ---------------------------------------------------------*/
 UART_HandleTypeDef huart1;
@@ -20,7 +21,8 @@ int main(void)
   /* Initialize all configured peripherals */
   GPIO_Init();
   USART1_UART_Init();
-  // myprintf("Hi I am Cristobal\r\n");
+  myprintf("Hi I am Cristobal\r\n");
+  /* Infinite loop */
   while (1)
   {
   }
@@ -74,10 +76,11 @@ bool SystemClock_Config(void)
 
 void GPIO_Init(void)
 {
-  // GPIO_InitTypeDef GPIO_InitStruct = {0};
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
+  // GPIO_InitTypeDef GPIO_InitStruct = {0};
+  /* GPIO Ports Clock Enable */
   // GPIO_InitStruct.Pin = GPIO_PIN_2 | GPIO_PIN_3;
   // GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
   // GPIO_InitStruct.Pull = GPIO_NOPULL;
@@ -110,14 +113,13 @@ bool USART1_UART_Init(void)
   return true;
 }
 
-/* void myprintf(const char *fmt, ...)
+void myprintf(const char *format, ...)
 {
   static char buffer[256];
   va_list args;
-  va_start(args, fmt);
-  vsnprintf(buffer, sizeof(buffer), fmt, args);
+  va_start(args, format);
+  vsnprintf(buffer, sizeof(buffer), format, args);
   va_end(args);
-
   int len = strlen(buffer);
   HAL_UART_Transmit(&huart1, (uint8_t *)buffer, len, -1);
-} */
+}

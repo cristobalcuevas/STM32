@@ -1,5 +1,5 @@
-#ifndef _DEFS_H_
-#define _DEFS_H_
+#ifndef __DEFS_H_
+#define __DEFS_H_
 
 #include "stm32f1xx_hal.h"
 #include "stm32f1xx.h"
@@ -10,4 +10,4 @@
 #define RX_Local_Port GPIOA
 #define RX_Local_Pin GPIO_PIN_10
 
-#endif
+#endif /* __DEFS_H_ */
