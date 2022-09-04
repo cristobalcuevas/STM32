@@ -5,9 +5,9 @@
 #include "stm32f1xx.h"
 
 /* Local UART */
-#define TX_Local_Port   GPIOA
-#define TX_Local_Pin    GPIO_PIN_9
-#define RX_Local_Port   GPIOA
-#define RX_Local_Pin    GPIO_PIN_10
+#define TX_Local_Port GPIOA
+#define TX_Local_Pin GPIO_PIN_9
+#define RX_Local_Port GPIOA
+#define RX_Local_Pin GPIO_PIN_10
 
 #endif

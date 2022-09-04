@@ -9,8 +9,8 @@
 #include "stm32f1xx_hal.h"
 
 bool SystemClock_Config(void);
-bool Uart_Init(void);
-void Gpio_Init(void);
+bool USART1_UART_Init(void);
+void GPIO_Init(void);
 void myprintf(const char *format, ...);
 
 #endif /* __MAIN_H */
