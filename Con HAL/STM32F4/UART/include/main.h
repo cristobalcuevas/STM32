@@ -9,9 +9,9 @@
 #include "stm32f4xx_hal.h"
 #include "stm32f4xx_hal_uart.h"
 
-bool SystemClock_Config(void);
+void SystemClock_Config(void);
 void GPIO_Init(void);
-bool USART1_UART_Init(void);
+void USART1_UART_Init(void);
 void myprintf(const char *format, ...);
 
 #endif /* __MAIN_H */

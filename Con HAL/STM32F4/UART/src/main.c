@@ -3,9 +3,9 @@
 /* Private variables ---------------------------------------------------------*/
 UART_HandleTypeDef huart1;
 /* Private function prototypes -----------------------------------------------*/
-bool SystemClock_Config(void);
+void SystemClock_Config(void);
 void GPIO_Init(void);
-bool USART1_UART_Init(void);
+void USART1_UART_Init(void);
 
 /**
  * @brief  The application entry point.
@@ -14,10 +14,11 @@ bool USART1_UART_Init(void);
 
 int main(void)
 {
-  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  Hal_Init();
   /* Configure the system clock */
   SystemClock_Config();
+  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+  Hal_Init();
+
   /* Initialize all configured peripherals */
   GPIO_Init();
   USART1_UART_Init();
@@ -33,7 +34,7 @@ int main(void)
  * @retval None
  */
 
-bool SystemClock_Config(void)
+void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
@@ -50,22 +51,14 @@ bool SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLN = 168;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
   RCC_OscInitStruct.PLL.PLLQ = 7;
-  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
-  {
-    return false;
-  }
+  HAL_RCC_OscConfig(&RCC_OscInitStruct);
   /* Initializes the CPU, AHB and APB buses clocks */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK | RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
-
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK)
-  {
-    return false;
-  }
-  return true;
+  HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5);
 }
 
 /**
@@ -79,14 +72,14 @@ void GPIO_Init(void)
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
-  // GPIO_InitTypeDef GPIO_InitStruct = {0};
+  GPIO_InitTypeDef GPIO_InitStruct = {0};
   /* GPIO Ports Clock Enable */
-  // GPIO_InitStruct.Pin = GPIO_PIN_2 | GPIO_PIN_3;
-  // GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  // GPIO_InitStruct.Pull = GPIO_NOPULL;
-  // GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
-  // GPIO_InitStruct.Alternate = GPIO_AF7_USART1;
-  // HAL_GPIO_Init(GPIOH, &GPIO_InitStruct);
+  GPIO_InitStruct.Pin = GPIO_PIN_2 | GPIO_PIN_3;
+  GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+  GPIO_InitStruct.Alternate = GPIO_AF7_USART1;
+  HAL_GPIO_Init(GPIOH, &GPIO_InitStruct);
 }
 
 /**
@@ -95,7 +88,7 @@ void GPIO_Init(void)
  * @retval None
  */
 
-bool USART1_UART_Init(void)
+void USART1_UART_Init(void)
 {
   __HAL_RCC_USART1_CLK_ENABLE();
   huart1.Instance = USART1;
@@ -106,11 +99,7 @@ bool USART1_UART_Init(void)
   huart1.Init.Mode = UART_MODE_TX_RX;
   huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
   huart1.Init.OverSampling = UART_OVERSAMPLING_16;
-  if (HAL_UART_Init(&huart1) != HAL_OK)
-  {
-    return false;
-  }
-  return true;
+  HAL_UART_Init(&huart1);
 }
 
 void myprintf(const char *format, ...)
