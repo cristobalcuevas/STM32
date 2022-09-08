@@ -17,12 +17,12 @@ int main(void)
   /* Configure the system clock */
   SystemClock_Config();
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  Hal_Init();
+  HAL_Init();
 
   /* Initialize all configured peripherals */
   GPIO_Init();
   USART1_UART_Init();
-  myprintf("Hi I am Cristobal\r\n");
+  myprintf("Hello world\r\n");
   /* Infinite loop */
   while (1)
   {
@@ -72,6 +72,9 @@ void GPIO_Init(void)
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOH_CLK_ENABLE();
   __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
+  __HAL_RCC_GPIOC_CLK_ENABLE();
+  __HAL_RCC_USART1_CLK_ENABLE();
   GPIO_InitTypeDef GPIO_InitStruct = {0};
   /* GPIO Ports Clock Enable */
   GPIO_InitStruct.Pin = GPIO_PIN_2 | GPIO_PIN_3;
