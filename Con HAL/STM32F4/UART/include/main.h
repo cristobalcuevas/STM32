@@ -11,7 +11,7 @@
 
 void SystemClock_Config(void);
 void GPIO_Init(void);
-void USART1_UART_Init(void);
+void USART2_UART_Init(void);
 void myprintf(const char *format, ...);
 
 #endif /* __MAIN_H */

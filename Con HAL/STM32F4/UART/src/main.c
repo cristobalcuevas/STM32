@@ -1,11 +1,11 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 /* Private variables ---------------------------------------------------------*/
-UART_HandleTypeDef huart1;
+UART_HandleTypeDef huart2;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 void GPIO_Init(void);
-void USART1_UART_Init(void);
+void USART2_UART_Init(void);
 
 /**
  * @brief  The application entry point.
@@ -21,7 +21,7 @@ int main(void)
 
   /* Initialize all configured peripherals */
   GPIO_Init();
-  USART1_UART_Init();
+  USART2_UART_Init();
   myprintf("Hello world\r\n");
   /* Infinite loop */
   while (1)
@@ -71,38 +71,37 @@ void GPIO_Init(void)
 {
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOH_CLK_ENABLE();
-  __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
   __HAL_RCC_GPIOC_CLK_ENABLE();
-  __HAL_RCC_USART1_CLK_ENABLE();
   GPIO_InitTypeDef GPIO_InitStruct = {0};
   /* GPIO Ports Clock Enable */
   GPIO_InitStruct.Pin = GPIO_PIN_2 | GPIO_PIN_3;
   GPIO_InitStruct.Mode = GPIO_MODE_AF_PP;
-  GPIO_InitStruct.Pull = GPIO_NOPULL;
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
-  GPIO_InitStruct.Alternate = GPIO_AF7_USART1;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_VERY_HIGH;
+  GPIO_InitStruct.Alternate = GPIO_AF7_USART2;
   HAL_GPIO_Init(GPIOH, &GPIO_InitStruct);
 }
 
 /**
- * @brief USART1 Initialization Function
+ * @brief USART2 Initialization Function
  * @param None
  * @retval None
  */
 
-void USART1_UART_Init(void)
+void USART2_UART_Init(void)
 {
-  __HAL_RCC_USART1_CLK_ENABLE();
-  huart1.Instance = USART1;
-  huart1.Init.BaudRate = 115200;
-  huart1.Init.WordLength = UART_WORDLENGTH_8B;
-  huart1.Init.StopBits = UART_STOPBITS_1;
-  huart1.Init.Parity = UART_PARITY_NONE;
-  huart1.Init.Mode = UART_MODE_TX_RX;
-  huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
-  huart1.Init.OverSampling = UART_OVERSAMPLING_16;
-  HAL_UART_Init(&huart1);
+  __HAL_RCC_GPIOA_CLK_ENABLE();
+  __HAL_RCC_USART2_CLK_ENABLE();
+  huart2.Instance = USART2;
+  huart2.Init.BaudRate = 115200;
+  huart2.Init.WordLength = UART_WORDLENGTH_8B;
+  huart2.Init.StopBits = UART_STOPBITS_1;
+  huart2.Init.Parity = UART_PARITY_NONE;
+  huart2.Init.Mode = UART_MODE_TX_RX;
+  huart2.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+  huart2.Init.OverSampling = UART_OVERSAMPLING_16;
+  HAL_UART_Init(&huart2);
 }
 
 void myprintf(const char *format, ...)
@@ -113,5 +112,5 @@ void myprintf(const char *format, ...)
   vsnprintf(buffer, sizeof(buffer), format, args);
   va_end(args);
   int len = strlen(buffer);
-  HAL_UART_Transmit(&huart1, (uint8_t *)buffer, len, -1);
+  HAL_UART_Transmit(&huart2, (uint8_t *)buffer, len, -1);
 }
